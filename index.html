@@ -99,6 +99,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#atoms" class="nav-link">Atoms</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -200,7 +204,7 @@ Let's take the atom <code>window</code> for example. To use <code>window</code>,
 <p>If you need to start (launch) a file from any directory (If the file is located in another directory, make sure to include the path), use the keyword <code>start</code>.</p>
 <pre><code class="language-py">start 'Hello.txt'
 </code></pre>
-<h3 id="keyword-open-write-read-close-write-previously-read">Keyword: open, write, read, close, write-previously read</h3>
+<h3 id="keyword-open-write-read-close-write-previously-read-read-current-set-cursor">Keyword: open, write, read, close, write-previously read, read-current, set-cursor</h3>
 <p>Editing/reading a file is an essential thing when programming. Let your application manage your database or write a long message into a file!</p>
 <p>If you want Bare to write something into a file, you need to open it before that. Luckily, you don't need to actually open it, Bare will open it in the background when you use the keyword <code>open</code>.</p>
 <pre><code class="language-py">open 'Hello.txt'
@@ -215,6 +219,19 @@ Let's take the atom <code>window</code> for example. To use <code>window</code>,
 To write what you have previously read into a file (much like say-previously-read, but instead of saying it writes it into a file), use <code>write-previously-read</code>.</p>
 <pre><code class="language-py">read 'Hello.txt'
 write-previously-read 'Hello2.txt'
+</code></pre>
+<p>If you already have a file open and want to read the content of that - rather than pass in a file name, you can use the keyword <code>read-current</code>.</p>
+<pre><code class="language-py">|| content of Hello.txt: 'Hello world!'
+open 'Hello.txt'
+read-current
+</code></pre>
+<p>Bare has now read your file and it has stored the content in <code>self.read</code>.</p>
+<p>Do you want to set your cursor at a specific point in a file? You can do that with <code>set-cursor</code>.</p>
+<pre><code class="language-py">|| Set your cursor at the beginning in a file
+set-cursor (0)
+
+|| Set your cursor at an other point in a file
+set-cursor (30)
 </code></pre>
 <p>If you are done editing your file, you will need to close it (Otherwise it will stay in use). You can do that by just typing <code>close</code>, no filename needed because Bare already knows which file you're talking about.</p>
 <h3 id="keyword-if-default">Keyword: if, default:</h3>
@@ -245,6 +262,10 @@ Other than that, an if statement follows the same syntax as Python:</p>
 <td>&gt;</td>
 <td>is greater than</td>
 </tr>
+<tr>
+<td>%</td>
+<td>Rest of a number</td>
+</tr>
 </tbody>
 </table>
 <p>For example, when you want to check if a file contains a specific string, you can use <code>if</code>.</p>
@@ -255,13 +276,105 @@ close
 read 'Hello.txt'
 default: say 'No, it does not say Hello!'
 if self.read=='Hello!': say 'Yes, it says Hello!'
-</code></pre></div>
+</code></pre>
+<p>Output:</p>
+<pre><code>Yes, it says Hello!
+</code></pre>
+<h3 id="keyword-compile_atom-compile">Keyword compile_atom, compile</h3>
+<p>If you have made an atom but you have too many files so you can't use AtomCompiler to compile everything one by one? Use this keyword to make things 100x faster!</p>
+<pre><code class="language-py">|| Compile files with compile_atom
+compile_atom 'atom1.ba'
+compile_atom 'atom2.ba'
+compile_atom 'atom3.ba'
+compile_atom 'atom4.ba'
+compile_atom 'atom5.ba'
+compile_atom 'atom6.ba'
+compile_atom 'atom7.ba'
+</code></pre>
+<p>Compile your scripts to a <code>.bac</code> file for more safety. You can do this with <code>compile</code>.</p>
+<pre><code class="language-py">|| Compile files with compile
+compile 'script1.ba'
+compile 'script2.ba'
+compile 'script3.ba'
+compile 'script4.ba'
+compile 'script5.ba'
+</code></pre>
+<h3 id="keyword-var">Keyword var</h3>
+<p>Storing lots of data into a single word/name, crazy to think about right? No!</p>
+<p>Simply said, variables are like boxes. You give the box a name and store data in the box. If you ever need to reference the box, you can use its name.</p>
+<p>Let's say you want to store a sentence: <code>Hello, world!</code> into a variable: <code>greeting</code>. After you stored it into the variable, you want to say it. Let's do that!</p>
+<pre><code class="language-py">var greeting='Hello, world!'
+say greeting
+</code></pre>
+<p>Output:</p>
+<pre><code>Hello, world!
+</code></pre>
+<h3 id="keyword-nothing">Keyword nothing</h3>
+<p>If you want to initialize a function (Don't make it do anything), you can use <code>nothing</code> because you can't leave a function empty.</p>
+<p>If you try to leave a function empty, this will be the output:</p>
+<pre><code>Error (Most recent is shown last):
+  File '&lt;YOUR FILE&gt;',
+    Line 1, word 1:
+EmptyFunctionError:
+    Empty function; if you don't want your function to do anything, use the keyword 'nothing'.
+
+
+During this error, another error occurred:
+
+Error (Most recent is shown last):
+  File '&lt;YOUR FILE&gt;',
+    Line 2, word 3:
+InvalidFunctionError:
+    Function 'function' does not exist.
+              ~~~~~~~~
+              ^
+</code></pre>
+<p>To avoid this error, use <code>nothing</code>.</p>
+<pre><code class="language-py">make $function: nothing
+$function
+</code></pre>
+<p>Now there won't occur an error!</p>
+<h2 id="atoms"><strong>Atoms</strong></h2>
+<p>Atoms are scripts made by people, for people! You can use atoms to not haev to rewrite code every time you write an application.</p>
+<p>This is how you structure atoms:</p>
+<p>Atom-Name (Directory):<br />
+- script_1.ba<br />
+- config.txt (Optional)<br />
+- README.txt (Optional)  </p>
+<p>You can add as many scripts as you'd like.<br />
+<strong>Make sure your script doesn't call any functions when someone uses it!</strong></p>
+<p>Your script files should look something like this:</p>
+<pre><code class="language-py">make $function1: say 'Hello, world!'
+make $function2: say 'Hello, again!'
+make $function3: function1 | function2
+</code></pre>
+<h3 id="atomcompiler">AtomCompiler</h3>
+<p>Using AtomCompiler is optional.
+If you don't want people seeing your scripts when they use it, use AtomCompiler.</p>
+<p>The only thing you have to do to compile your atoms is call this command (in CMD):</p>
+<pre><code>atomcompiler [YOUR SCRIPT HERE]
+</code></pre>
+<p>AtomCompiler will then generate a compiled version of your script, written in bytes.</p>
+<h3 id="releasing">Releasing</h3>
+<p>Releasing your atoms for everyone to download isn't that hard.<br />
+Make sure you have joined <a href="https://discord.gg/eNmS9jP">Bare's discord server</a>.<br />
+If you're joined, you can request your atom to be added to BIL in <a href="https://discord.com/channels/766327035634122762/767038601308405770"><code>#atoms</code></a>.</p>
+<h3 id="installing">Installing</h3>
+<p>Installing atoms is made easy with BIL!  </p>
+<p>To install an atom, call this command (in CMD):</p>
+<pre><code>bil get [ATOM]
+</code></pre>
+<p>The atom will then be installed. <strong>You're not done yet though!</strong><br />
+1. Extract the downloaded file into <code>C:\Program Files (x86)\Bare\atoms\online-packages</code>.<br />
+2. Remove the version of the extracted atom's folder name, like this: 
+<img alt="New-Folder-Name" src="BIL_Folder.PNG" /><br />
+Now you have fully installed an atom!</p></div>
             </div>
         </div>
 
         <footer class="col-md-12">
             <hr>
-            <p>Documentation built by <a href="https://bare-language.carrd.co/">Bare</a>.</p>
+            <p>Documentation built by <a href="https://bare-language.carrd.co">Bare</a>.</p>
         </footer>
         <script>
             var base_url = ".",
@@ -336,3 +449,8 @@ if self.read=='Hello!': say 'Yes, it says Hello!'
 
     </body>
 </html>
+
+<!--
+MkDocs version : 1.1.2
+Build Date UTC : 2020-11-01 21:26:27.689912+00:00
+-->
