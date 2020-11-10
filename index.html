@@ -105,6 +105,27 @@
             </li>
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="1"><a href="#built-in-atoms_1" class="nav-link">Built-in Atoms</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#bagui" class="nav-link">Bagui</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#time" class="nav-link">Time</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#system" class="nav-link">System</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#os" class="nav-link">OS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -114,10 +135,15 @@
 <p>The most human-sounding language in the world! To download Bare visit <a href="https://bare-language.carrd.co">bare-language.carrd.co</a>.</p>
 <h2 id="commands">Commands</h2>
 <ul>
-<li><code>bare [File name]</code> - Run a Bare file through Command Prompt.</li>
+<li><code>bare</code> - Open a new Bare terminal</li>
+<li><code>bare [File name]</code> - Run a Bare file through Command Prompt</li>
+<li><code>bare new</code> - Get help about creating a new application</li>
+<li><code>bare new console</code> - Create a new console application</li>
+<li><code>bare new window</code> - Create a new window application</li>
+<li><code>bare new window template</code> - Create a new window application with a pre-written template</li>
 <li><code>Batl [File name]</code> - Edit a Bare file with Batl</li>
 <li><code>barecompiler [File name]</code> - Compile a Bare file to .bac (Compiled Bare file)</li>
-<li><code>barexecutor [File name] [Icon]</code> - Compile a Bare file to .exe</li>
+<li><code>barexecutor [File name] [Icon] (window-app)</code> - Compile a Bare file to .exe. If you include <code>window-app</code>, the application will not show a console/terminal window when you startup the application</li>
 </ul>
 <h2 id="installing-and-testing">Installing and testing</h2>
 <p>To start off, <a href="https://bare-language.carrd.co">download and install Bare from our official website</a> if you haven't already.
@@ -137,12 +163,13 @@ To create a new file, right click -&gt; New textdocument and rename it to <code>
 <p>To ask for input, use the keyword <code>ask</code>.</p>
 <pre><code class="language-py">ask 'Username: '
 </code></pre>
-<p>You can also only use <code>ask</code>, so it will just take someone's input and put nothing on the console.</p>
-<h3 id="keyword-hyperlink-lookupkey">Keyword: hyperlink, lookup.key</h3>
-<p>You can open a link or lookup a keyword through your webbrowser with Bare with <code>hyperlink</code> and <code>lookup.key</code>.
+<p>You can also only use <code>ask</code>, so it will just take someone's input and put nothing on the console.
+<strong>This keyword will not return any string! To store the returned value in a variable, use keyword <code>get</code>.</strong></p>
+<h3 id="keyword">Keyword:</h3>
+<h3 id="keyword-hyperlink">Keyword: hyperlink</h3>
+<p>You can open a link through your webbrowser with Bare with <code>hyperlink</code>.
 <strong>You will always have to have "http://" or "https://" at the start of a link! It will otherwise return an error.</strong></p>
 <pre><code class="language-py">hyperlink 'bare-language.carrd.co'
-lookup.key 'Bare language'
 </code></pre>
 <h3 id="keyword-readout">Keyword: readout</h3>
 <p>Read a file and immediately say the content. This will be stored in an internal variable.</p>
@@ -170,7 +197,7 @@ Hello world!
 <pre><code class="language-py">get-html 'bare-language.carrd.co'
 </code></pre>
 <p>Output:</p>
-<pre><code>&lt;!DOCTYPE HTML&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;title&gt;Bare&lt;/title&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1,user-scalable=no&quot; /&gt;&lt;meta name=&quot;description&quot; content=&quot;Welcome to Bare! The most human-sounding programming language ever! This programming language is the best language to switch to if you care about readability, simpleness and power.&quot; /&gt;&lt;meta property=&quot;og:site_name&quot; content=&quot;Bare&quot; /&gt;&lt;meta property=&quot;og:title&quot; content=&quot;Bare&quot; /&gt;&lt;meta property=&quot;og:type&quot; content=&quot;website&quot; /&gt;&lt;meta property=&quot;og:description&quot;&gt;
+<pre><code class="language-html">&lt;!DOCTYPE HTML&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;title&gt;Bare&lt;/title&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1,user-scalable=no&quot; /&gt;&lt;meta name=&quot;description&quot; content=&quot;Welcome to Bare! The most human-sounding programming language ever! This programming language is the best language to switch to if you care about readability, simpleness and power.&quot; /&gt;&lt;meta property=&quot;og:site_name&quot; content=&quot;Bare&quot; /&gt;&lt;meta property=&quot;og:title&quot; content=&quot;Bare&quot; /&gt;&lt;meta property=&quot;og:type&quot; content=&quot;website&quot; /&gt;&lt;meta property=&quot;og:description&quot;&gt;
 ...
 </code></pre>
 <h3 id="keyword-make">Keyword: make</h3>
@@ -280,7 +307,7 @@ if self.read=='Hello!': say 'Yes, it says Hello!'
 <p>Output:</p>
 <pre><code>Yes, it says Hello!
 </code></pre>
-<h3 id="keyword-compile_atom-compile">Keyword compile_atom, compile</h3>
+<h3 id="keyword-compile_atom-compile">Keyword: compile_atom, compile</h3>
 <p>If you have made an atom but you have too many files so you can't use AtomCompiler to compile everything one by one? Use this keyword to make things 100x faster!</p>
 <pre><code class="language-py">|| Compile files with compile_atom
 compile_atom 'atom1.ba'
@@ -299,7 +326,7 @@ compile 'script3.ba'
 compile 'script4.ba'
 compile 'script5.ba'
 </code></pre>
-<h3 id="keyword-var">Keyword var</h3>
+<h3 id="keyword-var">Keyword: var</h3>
 <p>Storing lots of data into a single word/name, crazy to think about right? No!</p>
 <p>Simply said, variables are like boxes. You give the box a name and store data in the box. If you ever need to reference the box, you can use its name.</p>
 <p>Let's say you want to store a sentence: <code>Hello, world!</code> into a variable: <code>greeting</code>. After you stored it into the variable, you want to say it. Let's do that!</p>
@@ -309,7 +336,7 @@ say greeting
 <p>Output:</p>
 <pre><code>Hello, world!
 </code></pre>
-<h3 id="keyword-nothing">Keyword nothing</h3>
+<h3 id="keyword-nothing">Keyword: nothing</h3>
 <p>If you want to initialize a function (Don't make it do anything), you can use <code>nothing</code> because you can't leave a function empty.</p>
 <p>If you try to leave a function empty, this will be the output:</p>
 <pre><code>Error (Most recent is shown last):
@@ -334,11 +361,83 @@ InvalidFunctionError:
 $function
 </code></pre>
 <p>Now there won't occur an error!</p>
+<h3 id="keyword-delete-directory">Keyword: delete-directory</h3>
+<p>Deleting a directory is as easy as deleting a file with <code>delete-directory</code>.<br />
+<strong>You are only able to delete a directory when the given directory is empty.</strong></p>
+<pre><code class="language-py">delete-directory 'A/Directory'
+</code></pre>
+<h3 id="keyword-change-directory">Keyword: change-directory</h3>
+<p>You can change your working directory with <code>change-directory</code> (Python: os.chdir())</p>
+<pre><code class="language-py">change-directory 'C:\\Users\\BareUser\\Dekstop\\My-Project'
+</code></pre>
+<h3 id="keyword-errorize-lift">Keyword: errorize, lift</h3>
+<p>Making a custom error and lifting it when you want is obviously essential for making your own atom.<br />
+You can <code>errorize</code> a string to be able to <code>lift</code> it later on.</p>
+<pre><code class="language-py">errorize 'SomeError'
+lift 'SomeError': 'Something went wrong.'
+</code></pre>
+<p>Output:</p>
+<pre><code>Error (Most recent is shown last):
+  File '&lt;Application.ba&gt;',
+    Line '&lt;lift&gt;', word 3:
+SomeError:
+    Something went wrong.
+</code></pre>
+<p>There is your custom error!</p>
+<p>If you don't errorize a string before lifting it, this will be the output:</p>
+<pre><code>Error (Most recent is shown last):
+  File '&lt;Application.ba&gt;',
+    Line 2, word 4:
+LiftingError:
+    Could not lift 'SomeError', because it is not a valid error. Have you used the keyword 'errorize'?
+                    ~~~~~~~~~
+                    ^
+</code></pre>
+<h3 id="keyword-equation">Keyword: equation</h3>
+<p>When you need Bare to equate a mathematical equation, you can use the keyword <code>equation</code> to store the answer to a sum into a variable.<br />
+It is close to Python's way of equating math, but you can use <code>x</code> and <code>*</code> instead of only <code>*</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Symbol / Operator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>Plus</td>
+</tr>
+<tr>
+<td>-</td>
+<td>Minus</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Divide</td>
+</tr>
+<tr>
+<td>*</td>
+<td>Multiply</td>
+</tr>
+<tr>
+<td>x</td>
+<td>Multiply</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-py">equation answer=((1 + 500) x 10) * 0.5
+say answer
+</code></pre>
+<p>Output:</p>
+<pre><code>2505.0
+</code></pre>
 <h2 id="atoms"><strong>Atoms</strong></h2>
-<p>Atoms are scripts made by people, for people! You can use atoms to not haev to rewrite code every time you write an application.</p>
+<p>Atoms are scripts made by people, for people! You can use atoms to not have to rewrite code every time you write an application.</p>
 <p>This is how you structure atoms:</p>
 <p>Atom-Name (Directory):<br />
 - script_1.ba<br />
+- compiled_script_1.batom<br />
 - config.txt (Optional)<br />
 - README.txt (Optional)  </p>
 <p>You can add as many scripts as you'd like.<br />
@@ -348,6 +447,37 @@ $function
 make $function2: say 'Hello, again!'
 make $function3: function1 | function2
 </code></pre>
+<h3 id="built-in-atoms">Built-in Atoms</h3>
+<p>Some atoms are built-in, meaning they aren't stored on your pc. Actually, they are inside of Bare. To use a built-in atom, do this:</p>
+<pre><code class="language-py">use &lt;atom&gt; -&gt; [built-in]
+</code></pre>
+<p>These are all of the built-in atoms as of now:  </p>
+<table>
+<thead>
+<tr>
+<th>Atom</th>
+<th>Use of atom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>system</td>
+<td>For anything related to a PC's system</td>
+</tr>
+<tr>
+<td>os</td>
+<td>For anything related to a PC's Operating System</td>
+</tr>
+<tr>
+<td>time</td>
+<td>Control (and see) time of your PC</td>
+</tr>
+<tr>
+<td>bagui</td>
+<td>Make a GUI for your application with buttons, inputfields and text</td>
+</tr>
+</tbody>
+</table>
 <h3 id="atomcompiler">AtomCompiler</h3>
 <p>Using AtomCompiler is optional.
 If you don't want people seeing your scripts when they use it, use AtomCompiler.</p>
@@ -368,13 +498,468 @@ If you're joined, you can request your atom to be added to BIL in <a href="https
 1. Extract the downloaded file into <code>C:\Program Files (x86)\Bare\atoms\online-packages</code>.<br />
 2. Remove the version of the extracted atom's folder name, like this: 
 <img alt="New-Folder-Name" src="BIL_Folder.PNG" /><br />
-Now you have fully installed an atom!</p></div>
+Now you have fully installed an atom!</p>
+<h1 id="built-in-atoms_1">Built-in Atoms</h1>
+<h2 id="bagui"><strong>Bagui</strong></h2>
+<p>Make your app easier to use with a GUI. Making a GUI can be hard though, but not with Bagui.<br />
+To make a new Bagui window file, open cmd and type:</p>
+<pre><code>bare new window
+</code></pre>
+<p>You can of course just make a file yourself.  </p>
+<h3 id="keywords_1"><strong>Keywords</strong></h3>
+<p>After using the atom, you can start using its keywords:</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Use of keyword</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new-window</td>
+<td>Create a new window</td>
+</tr>
+<tr>
+<td>configure</td>
+<td>Configure a window</td>
+</tr>
+<tr>
+<td>add-text</td>
+<td>Add text to a window</td>
+</tr>
+<tr>
+<td>add-inputfield</td>
+<td>Add an inputfield to a window</td>
+</tr>
+<tr>
+<td>add-space</td>
+<td>Go down one line in a window</td>
+</tr>
+<tr>
+<td>add-button</td>
+<td>Add a button to a window which will, when clicked, run a function</td>
+</tr>
+<tr>
+<td>forget</td>
+<td>Remove a widget from a window</td>
+</tr>
+<tr>
+<td>destroy-window</td>
+<td>Destroy a window, which will only exit from that specific window</td>
+</tr>
+<tr>
+<td>disable</td>
+<td>Disable a widget (A button for example). It will not forget it, but it will not be able to be used.</td>
+</tr>
+<tr>
+<td>enable</td>
+<td>Enable a widget</td>
+</tr>
+<tr>
+<td>get-response</td>
+<td>Get the response that a widget returns. For example: What is typed in an inputfield.</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>Use this keyword at the end of your script, so it will keep looping the app's frames until it is closed.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="keyword-new-window">Keyword: new-window</h3>
+<p>Create a new window. You can give this window a name (Which is a string), but you can't use a variable to name it. The name of the window will not be stored into a variable, you will always have to refer to it as a string.</p>
+<pre><code class="language-py">new-window 'root'
+</code></pre>
+<p>The default geometry of a window is <code>500x350</code>.</p>
+<h3 id="keyword-configure">Keyword: configure</h3>
+<p>Configure a window.</p>
+<pre><code class="language-py">configure 'root' ; options...
+</code></pre>
+<p>These are the options you can choose from:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>What the option does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>background-color</td>
+<td>Change the background color of a window</td>
+</tr>
+<tr>
+<td>width</td>
+<td>Change the width of a window</td>
+</tr>
+<tr>
+<td>height</td>
+<td>Change the height of a window</td>
+</tr>
+<tr>
+<td>fullscreen</td>
+<td>if set to <code>True</code>, a window will be covering up your whole screen</td>
+</tr>
+<tr>
+<td>title</td>
+<td>Set the title of a window</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="language-py">new-window 'root'
+configure 'root' ; background-color='#282828' ; title='Application'
+</code></pre>
+<p>Result:<br />
+<img alt="Bagui Application Result" src="Bagui_Application.PNG" /></p>
+<h3 id="keyword-add-text">Keyword: add-text</h3>
+<p>Add text to a window.</p>
+<pre><code class="language-py">add-text 'root' ; options...
+</code></pre>
+<p>These are the options you can choose from:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>What the option does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>foreground-color</td>
+<td>Change the color of the text</td>
+</tr>
+<tr>
+<td>background-color</td>
+<td>Change the color behind the text</td>
+</tr>
+<tr>
+<td>text</td>
+<td>Change what the text says</td>
+</tr>
+<tr>
+<td>font</td>
+<td>Set the font of the text</td>
+</tr>
+<tr>
+<td>font-size</td>
+<td>Change the size of the font</td>
+</tr>
+<tr>
+<td>font-weight</td>
+<td>Change the weight of the font (Possibilities: <code>normal</code> and <code>bold</code>)</td>
+</tr>
+<tr>
+<td>label</td>
+<td>Give your text a label so you can refer to it later on</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="language-py">new-window 'root'
+configure 'root' ; background-color='#282828' ; title='Application'
+add-text 'root' ; text='Hello!' ; foreground-color='white' ; background-color='#282828' ; font='Whitney Book' ; font-size=65 ; font-weight='normal'
+</code></pre>
+<p>Result:<br />
+<img alt="Bagui Application 2 Result" src="Bagui_Application_2.PNG" /></p>
+<h3 id="keyword-add-inputfield">Keyword: add-inputfield</h3>
+<p>Add an inputfield to a window.</p>
+<pre><code class="language-py">add-inputfield 'root' ; options...
+</code></pre>
+<p>These are the options you can choose from:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>What the option does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>foreground-color</td>
+<td>Change the color of the text in the inputfield</td>
+</tr>
+<tr>
+<td>background-color</td>
+<td>Change the color behind the text in the inputfield</td>
+</tr>
+<tr>
+<td>text</td>
+<td>Place text into the inputfield</td>
+</tr>
+<tr>
+<td>label</td>
+<td>Give your text a label so you can refer to it later on</td>
+</tr>
+<tr>
+<td>font</td>
+<td>Set the font of the text</td>
+</tr>
+<tr>
+<td>font-size</td>
+<td>Change the size of the font</td>
+</tr>
+<tr>
+<td>font-weight</td>
+<td>Change the weight of the font (Possibilities: <code>normal</code> and <code>bold</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="language-py">new-window 'root'
+configure 'root' ; background-color='#282828' ; title='Application'
+add-inputfield 'root' ; text='Type your name here' ; label='MyInputfield' ; font='Whitney Book' ; font-size=15 ; font-weight='normal'
+</code></pre>
+<p>Result:<br />
+<img alt="Bagui Application 3 Result" src="Bagui_Application_3.PNG" /></p>
+<h3 id="keyword-add-space">Keyword: add-space</h3>
+<p>Go down one line in a window.</p>
+<pre><code class="language-py">add-space 'root' ; '[Background Color]'
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-py">new-window 'root'
+configure 'root' ; background-color='#282828' ; title='Application'
+add-text 'root' ; text='Hello!' ; foreground-color='white' ; background-color='#282828' ; font='Whitney Book' ; font-size=65 ; font-weight='normal' ; label='MyText'
+add-space 'root' ; '#282828'
+add-inputfield 'root' ; text='Type your name here' ; label='MyInputfield' ; font='Whitney Book' ; font-size=15 ; font-weight='normal'
+</code></pre>
+<p>Result:<br />
+<img alt="Bagui Application 3 Result" src="Bagui_Application_4.PNG" /></p>
+<h3 id="keyword-add-button">Keyword: add-button</h3>
+<p>Add a button to a window which will, when clicked, run a function.</p>
+<pre><code class="language-py">add-button 'root' ; options...
+</code></pre>
+<p>These are the options you can choose from:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>What the option does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>foreground-color</td>
+<td>Change the color of the text on your button</td>
+</tr>
+<tr>
+<td>background-color</td>
+<td>Change the color of the button</td>
+</tr>
+<tr>
+<td>text</td>
+<td>Change what the text says on the button</td>
+</tr>
+<tr>
+<td>border</td>
+<td>Set the border size around the button</td>
+</tr>
+<tr>
+<td>width</td>
+<td>Change the width of the button</td>
+</tr>
+<tr>
+<td>height</td>
+<td>Chang the height of the button</td>
+</tr>
+<tr>
+<td>label</td>
+<td>Give your text a label so you can refer to it later on</td>
+</tr>
+<tr>
+<td>command</td>
+<td>Pass in a function so it will be ran when the button is pressed</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="language-py">new-window 'root'
+configure 'root' ; background-color='#282828' ; title='Application'
+add-space 'root' ; '#282828'
+make $myfunction: say 'Clicked!'
+add-button 'root' ; text='Click me!' ; border=0 ; width=25 ; label='MyButton' ; command=$myfunction
+</code></pre>
+<p>There is no result for this keyword, you will have to try it out yourself.</p>
+<h3 id="keyword-forget">Keyword: forget</h3>
+<p>Remove a widget from a window.</p>
+<pre><code class="language-py">forget '[AWidget]'
+</code></pre>
+<h3 id="keyword-destroy-window">Keyword: destroy-window</h3>
+<p>Destroy a window, which will only exit from that specific window.</p>
+<pre><code class="language-py">destroy-window 'root'
+</code></pre>
+<h3 id="keyword-get-response">Keyword: get-response</h3>
+<p>Get the response that a widget returns. For example: What is typed in an inputfield. Instead of defining the variable name before the response, you do it in reverse.</p>
+<pre><code class="language-py">|| Store the string you get from an inputfield in a variable called response.
+get-response 'AnInputfield'=response
+</code></pre>
+<h3 id="keyword-loop">Keyword: loop</h3>
+<p>After building your application with widgets and functions, you will need to actually loop the application so it will keep drawing frames.<br />
+Use this keyword at the end of your script, so it will keep looping frames of the app until it is closed.</p>
+<pre><code class="language-py">loop 'root'
+</code></pre>
+<h2 id="time"><strong>Time</strong></h2>
+<p>Control (and see) time of your PC.<br />
+This atom will give you a few variables.<br />
+These are all of the variables and keywords it creates as of now:  </p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Data in the variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>threading_time</td>
+<td>Return the value (in fractional seconds) of the sum of the system and user CPU time of the current thread. It does not include time elapsed during sleep. It is thread-specific by definition. The reference point of the returned value is undefined, so that only the difference between the results of consecutive calls in the same thread is valid.</td>
+</tr>
+<tr>
+<td>threading_nano</td>
+<td>Similar to threading_time but return time as nanoseconds.</td>
+</tr>
+<tr>
+<td>monotonic</td>
+<td>Return the value (in fractional seconds) of a monotonic clock, i.e. a clock that cannot go backwards. The clock is not affected by system clock updates. The reference point of the returned value is undefined, so that only the difference between the results of consecutive calls is valid.</td>
+</tr>
+<tr>
+<td>monotonic_nano</td>
+<td>Similar to monotonic, but return time as nanoseconds.</td>
+</tr>
+<tr>
+<td>performance</td>
+<td>Return the value (in fractional seconds) of a performance counter, i.e. a clock with the highest available resolution to measure a short duration. It does include time elapsed during sleep and is system-wide. The reference point of the returned value is undefined, so that only the difference between the results of consecutive calls is valid.</td>
+</tr>
+<tr>
+<td>performance_nano</td>
+<td>Similar to performance, but return time as nanoseconds.</td>
+</tr>
+<tr>
+<td>process_time</td>
+<td>Return the value (in fractional seconds) of the sum of the system and user CPU time of the current process. It does not include time elapsed during sleep. It is process-wide by definition. The reference point of the returned value is undefined, so that only the difference between the results of consecutive calls is valid.</td>
+</tr>
+<tr>
+<td>process_nano</td>
+<td>Similar to process_time, but return time as nanoseconds.</td>
+</tr>
+<tr>
+<td>time</td>
+<td>Return the time in seconds since the epoch as a floating point number. The specific date of the epoch and the handling of leap seconds is platform dependent. On Windows and most Unix systems, the epoch is January 1, 1970, 00:00:00 (UTC) and leap seconds are not counted towards the time in seconds since the epoch. This is commonly referred to as Unix time. Note that even though the time is always returned as a floating point number, not all systems provide time with a better precision than 1 second. While this function normally returns non-decreasing values, it can return a lower value than a previous call if the system clock has been set back between the two calls.</td>
+</tr>
+<tr>
+<td>time_nano</td>
+<td>Similar to time but returns time as an integer number of nanoseconds since the epoch.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wait</td>
+<td>Make your application wait (or sleep) for a number of seconds</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system"><strong>System</strong></h2>
+<p>For anything related to a PC's system.<br />
+This atom will give you a few variables.<br />
+These are all of the variables and keywords it creates as of now:  </p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Data in the variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>system_argv</td>
+<td>The list of command line arguments passed to a Bare script.</td>
+</tr>
+<tr>
+<td>byteorder</td>
+<td>An indicator of the native byte order. This will have the value 'big' on big-endian (most-significant byte first) platforms, and 'little' on little-endian (least-significant byte first) platforms.</td>
+</tr>
+<tr>
+<td>builtin_atom_names</td>
+<td>A tuple of strings giving the names of all modules that are compiled into this Bare interpreter. (This information is not available in any other way)</td>
+</tr>
+<tr>
+<td>copyright</td>
+<td>A string containing the copyright pertaining to the Bare interpreter.</td>
+</tr>
+<tr>
+<td>executable</td>
+<td>A string giving the absolute path of the executable binary for the Bare interpreter, on systems where this makes sense.</td>
+</tr>
+<tr>
+<td>allocated_blocks</td>
+<td>Return the number of memory blocks currently allocated by the interpreter, regardless of their size. This function is mainly useful for tracking and debugging memory leaks. If a Bare build or implementation cannot reasonably compute this information, this variable is allowed to return 0 instead.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exit</td>
+<td>Forcibly quit out of your application</td>
+</tr>
+</tbody>
+</table>
+<h2 id="os"><strong>OS</strong></h2>
+<p>For anything related to a PC's Operating System.<br />
+This atom will give you a few variables.<br />
+These are all of the variables and keywords it creates as of now:  </p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Data in the variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>os_name</td>
+<td>The name of the operating system dependent module imported. The following names have currently been registered: 'posix', 'nt', 'java'.</td>
+</tr>
+<tr>
+<td>current_directory</td>
+<td>Return a string representing the current working directory.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>change-directory</td>
+<td>Change the current working directory</td>
+</tr>
+</tbody>
+</table></div>
             </div>
         </div>
 
         <footer class="col-md-12">
             <hr>
-            <p>Documentation built by <a href="https://bare-language.carrd.co">Bare</a>.</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
             var base_url = ".",
@@ -452,5 +1037,5 @@ Now you have fully installed an atom!</p></div>
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-11-01 21:26:27.689912+00:00
+Build Date UTC : 2020-11-10 16:31:32.439115+00:00
 -->
